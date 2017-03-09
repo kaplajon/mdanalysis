@@ -70,19 +70,38 @@ calculations in MDAnalysis are in ``MDAnalysis.lib.distances``.
 Overview of available functions
 -------------------------------
 
-TODO: Couple of sentences on each function in lib.distances, don't duplicate the full docs
+For a full description of the functions see :mod:`MDAnalysis.lib.distances`.
+All of these functions accept an optional box argument to take periodic
+boundary conditions into account when calculating distances between positions.
+Note that this is important when calculating angles too, as the correct
+vector between positions must be considered.  Either orthogonal (rectangular)
+or a triclinic box can be used.
 
-Add links to full docs as part of bullet points
 
-lib.distances
-* distance_array
-* self_distance_array
-* calc_bonds
-* calc_angles
-* calc_torsions
-* pack_into_box
-* transform_RtoS
-* transform_StoR
-
+* :func:`~MDAnalysis.lib.distances.distance_array` --
+  For two arrays of coordinates `N` and `M`, calculates all combinations
+  of pairwise distances, returning a N x M array.
+* :func:`~MDAnalysis.lib.distances.self_distance_array` --
+  For a single array of coordinates returns a flattened array of all
+  combinations pairwise distances.
+* :func:`~MDAnalysis.lib.distances.calc_bonds` --
+  For two arrays of coordinates `N` and `M` of equal length, returns the
+  distance between the first two items, second two items, etc.
+* :func:`~MDAnalysis.lib.distances.calc_angles` --
+  For three arrays of coordinates of equal length, calculates the
+  calculates the angle between each triplet of positions, with the
+  middle array acting as the apex of each angle.
+* :func:`~MDAnalysis.lib.distances.calc_torsions` --
+  For four arrays of coordinates of equal length, calculates the
+  angle between the planes formed by the first three positions
+  and last three positions.
+* :func:`~MDAnalysis.lib.distances.apply_PBC` --
+  Moves a set of coordinates to within the primary unit cell.  For a
+  coordinate ``x`` in a dimension of size ``Lx``, this is defined as
+  being ``0 <= x < Lx``.  
+* :func:`~MDAnalysis.lib.distances.transform_RtoS` and
+  :func:`~MDAnalysis.lib.distances.transform_StoR` --
+  Transforms coordinates from real to fractional (S) space, and back
+  again.
 
 
