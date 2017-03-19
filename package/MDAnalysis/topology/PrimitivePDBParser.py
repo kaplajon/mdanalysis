@@ -34,11 +34,11 @@ a different file format (e.g. the "extended" PDB, *XPDB* format, see
 :mod:`~MDAnalysis.topology.ExtendedPDBParser`) that can handle residue
 numbers up to 99,999.
 
-.. SeeAlso::
-
-   * :mod:`MDAnalysis.topology.ExtendedPDBParser`
-   * :class:`MDAnalysis.coordinates.PDB.PDBReader`
-   * :class:`MDAnalysis.core.universe.Universe`
+See Also
+--------
+* :mod:`MDAnalysis.topology.ExtendedPDBParser`
+* :class:`MDAnalysis.coordinates.PDB.PDBReader`
+* :class:`MDAnalysis.core.universe.Universe`
 
 Classes
 -------

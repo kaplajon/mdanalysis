@@ -92,7 +92,9 @@ Classes
    :members:
    :inherited-members:
 
-.. SeeAlso:: :mod:`MDAnalysis.topology.tpr`
+See Also
+--------
+:mod:`MDAnalysis.topology.tpr`
 
 Development notes
 -----------------

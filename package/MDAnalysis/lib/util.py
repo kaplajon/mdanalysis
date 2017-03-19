@@ -193,16 +193,17 @@ except NameError:
 def filename(name, ext=None, keep=False):
     """Return a new name that has suffix attached; replaces other extensions.
 
-    :Arguments:
-      *name*
-           filename; extension is replaced unless keep=True;
-           *name* can also be a :class:`NamedStream` (and its
-           :attr:`NamedStream.name` will be changed accordingly)
-      *ext*
-           extension
-      *keep*
-           - ``False``: replace existing extension with *ext*;
-           - ``True``: keep old extension if one existed
+    Parameters
+    ----------
+    name: str or :class:`NamedStream`
+        filename; extension is replaced unless keep=True;
+        *name* can also be a :class:`NamedStream` (and its
+        :attr:`NamedStream.name` will be changed accordingly)
+    ext: None or str
+        extension to use in the new filename
+    keep: bool
+        - ``False``: replace existing extension with *ext*;
+        - ``True``: keep old extension if one existed
 
     .. versionchanged:: 0.9.0
        Also permits :class:`NamedStream` to pass through.
@@ -236,15 +237,17 @@ def openany(datasource, mode='r', reset=True):
     compressed files) to open file objects to sockets and strings---as long as
     they have a file-like interface.
 
-    :Arguments:
-     *datasource*
+    Parameters
+    ----------
+    datasource:
         a file or a stream
-     *mode*
+        mode: str
         'r' or 'w'
-     *reset*
+    reset: bool
         try to read (*mode* 'r') the stream from the start [``True``]
 
-    .. rubric:: Examples
+    Examples
+    --------
 
     Open a gzipped file and process it line by line::
 
@@ -258,7 +261,9 @@ def openany(datasource, mode='r', reset=True):
        with openany(urllib2.urlopen("http://www.MDAnalysis.org/")) as html:
           print(html.read())
 
-    .. SeeAlso:: :func:`anyopen`
+    See Also
+    --------
+    :func:`anyopen`
     """
     stream = anyopen(datasource, mode=mode, reset=reset)
     try:
@@ -296,19 +301,24 @@ def anyopen(datasource, mode='r', reset=True):
     If possible, the attribute ``stream.name`` is set to the filename or
     "<stream>" if no filename could be associated with the *datasource*.
 
-    :Arguments:
-     *datasource*
+    Parameters
+    ----------
+    datasource
         a file (from :class:`file` or :func:`open`) or a stream (e.g. from
         :func:`urllib2.urlopen` or :class:`cStringIO.StringIO`)
-     *mode*
-        'r' or 'w' or 'a', more complicated modes ('r+', 'w+' are not supported because
-        only the first letter is looked at) [``'r'``]
-     *reset*
-        try to read (*mode* 'r') the stream from the start [``True``]
+    mode: str
+        'r' or 'w' or 'a', more complicated modes ('r+', 'w+' are not supported
+        because only the first letter is looked at)
+    reset: bool
+        try to read (*mode* 'r') the stream from the start
 
-    :Returns: tuple ``stream`` which is a file-like object
+    Returns
+    -------
+    file-like object
 
-    .. SeeAlso:: :func:`openany` to be used with the :keyword:`with` statement.
+    See Also
+    --------
+    :func:`openany`: to be used with the :keyword:`with` statement.
 
     .. versionchanged:: 0.9.0
        Only returns the ``stream`` and tries to set ``stream.name = filename`` instead of the previous
@@ -446,13 +456,18 @@ def isstream(obj):
     - ``read()``, ``readline()``, ``readlines()``
     - ``write()``, ``writeline()``, ``writelines()``
 
-    .. SeeAlso:: :mod:`io`
+    See Also
+    --------
+    :mod:`io`
 
-    :Arguments:
-      *obj*
-          stream or string
+    Parameters
+    ----------
+    obj: stream or string
 
-    :Returns: ``True`` is *obj* is a stream, ``False`` otherwise
+    Returns
+    -------
+    bool
+        ``True`` is *obj* is a stream, ``False`` otherwise
 
     .. versionadded:: 0.9.0
     """
@@ -675,7 +690,10 @@ class NamedStream(io.IOBase):
         - :data:`io.SEEK_END` or 2 – end of the stream; *offset* is usually
           negative
 
-        :Returns: the new absolute position.
+        Returns
+        -------
+        int
+            the new absolute position.
         """
         try:
             return self.stream.seek(offset, whence)  # file.seek: no kw
@@ -806,7 +824,10 @@ def realpath(*args):
 def get_ext(filename):
     """Return the lower-cased extension of *filename* without a leading dot.
 
-    :Returns: root, ext
+    Returns
+    -------
+    root: str
+    ext: str
     """
     root, ext = os.path.splitext(filename)
     if ext.startswith(os.extsep):
@@ -850,8 +871,9 @@ def guess_format(filename):
     *filename* can also be a stream, in which case
     *filename.name* is looked at for a hint to the format
 
-    :Raises:
-       *ValueError*
+    Raises
+    ------
+    ValueError
 
     .. versionadded:: 0.11.0
        Moved into lib.util
@@ -919,12 +941,13 @@ class FixedcolumnEntry(object):
 
     def __init__(self, start, stop, typespecifier):
         """
-        :Arguments:
-         *start*
+        Parameters
+        ----------
+        start: int
             first column
-         *stop*
+        stop: int
             last column + 1
-         *typespecifier*
+        typespecifier: str
             'I': int, 'F': float, 'E': float, 'A': stripped string
 
         The start/stop arguments follow standard Python convention in that
@@ -994,11 +1017,19 @@ class FORTRANReader(object):
 
         Values are converted to Python types according to the format specifier.
 
-        :Returns: list of entries with appropriate types
-        :Raises: :exc:`ValueError` if any of the conversions cannot be made
-                 (e.g. space for an int)
+        Returns
+        -------
+        list
+            list of entries with appropriate types
 
-        .. SeeAlso:: :meth:`FORTRANReader.number_of_matches`
+        Raises
+        ------
+        ValueError
+            Any of the conversions cannot be made (e.g. space for an int)
+
+        See Also
+        --------
+        :meth:`FORTRANReader.number_of_matches`
         """
         return [e.read(line) for e in self.entries]
 
@@ -1019,10 +1050,15 @@ class FORTRANReader(object):
 
           parse_FORTRAN_format(edit_descriptor) --> dict
 
-        :Returns: dict with totallength (in chars), repeat, length,
-                  format, decimals
-        :Raises: :exc:`ValueError` if the *edit_descriptor* is not recognized
-                 and cannot be parsed
+        Returns
+        -------
+        dict
+            dict with totallength (in chars), repeat, length, format, decimals
+
+        Raises
+        ------
+        ValueError
+            The *edit_descriptor* is not recognized and cannot be parsed
 
         .. Note::
 
@@ -1116,7 +1152,9 @@ inverse_aa_codes.update(alternative_inverse_aa_codes)
 def convert_aa_code(x):
     """Converts between 3-letter and 1-letter amino acid codes.
 
-    .. SeeAlso:: Data are defined in :data:`amino_acid_codes` and :data:`inverse_aa_codes`.
+    See Also
+    --------
+    Data are defined in :data:`amino_acid_codes` and :data:`inverse_aa_codes`.
     """
     if len(x) == 1:
         d = amino_acid_codes
@@ -1157,14 +1195,20 @@ def parse_residue(residue):
      - "4GB300:H6O" --> ("4GB", 300, "H6O")
      - "4GB300" --> ("4GB", 300, None)
 
-    :Argument: The *residue* must contain a 1-letter or 3-letter or
-               4-letter residue string, a number (the resid) and
-               optionally an atom identifier, which must be separate
-               from the residue with a colon (":"). White space is
-               allowed in between.
+    Parameters
+    ----------
+    residue: str
+        The *residue* must contain a 1-letter or 3-letter or
+        4-letter residue string, a number (the resid) and
+        optionally an atom identifier, which must be separate
+        from the residue with a colon (":"). White space is
+        allowed in between.
 
-    :Returns: `(3-letter aa string, resid, atomname)`; known 1-letter
-              aa codes are converted to 3-letter codes
+    Returns
+    -------
+    tuple
+        `(3-letter aa string, resid, atomname)`; known 1-letter
+        aa codes are converted to 3-letter codes
     """
 
     # XXX: use _translate_residue() ....

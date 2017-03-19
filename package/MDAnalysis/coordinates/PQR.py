@@ -142,11 +142,14 @@ class PQRReader(base.SingleFrameReaderBase):
     def Writer(self, filename, **kwargs):
         """Returns a PQRWriter for *filename*.
 
-        :Arguments:
-           *filename*
-              filename of the output PQR file
+        Parameters
+        ----------
+        filename: str
+            filename of the output PQR file
 
-        :Returns: :class:`PQRWriter`
+        Returns
+        -------
+        :class:`PQRWriter`
         """
         return PQRWriter(filename, **kwargs)
 

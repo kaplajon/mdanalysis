@@ -34,7 +34,9 @@ partial charges (:attr:`Atom.charge`).
 .. Note:: Only reads atoms and their names; connectivity is not
           deduced. Masses are guessed and set to 0 if unknown.
 
-.. SeeAlso:: `MDAnalysis.coordinates.PDBQT`
+See Also
+--------
+`MDAnalysis.coordinates.PDBQT`
 
 .. _PDBQT:
    http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file

@@ -189,11 +189,14 @@ class GROReader(base.SingleFrameReaderBase):
     def Writer(self, filename, **kwargs):
         """Returns a CRDWriter for *filename*.
 
-        :Arguments:
-          *filename*
+        Parameters
+        ----------
+        filename: str
             filename of the output GRO file
 
-        :Returns: :class:`GROWriter`
+        Returns
+        -------
+        :class:`GROWriter`
 
         """
         return GROWriter(filename, **kwargs)
@@ -240,9 +243,13 @@ class GROWriter(base.WriterBase):
     def __init__(self, filename, convert_units=None, **kwargs):
         """Set up a GROWriter with a precision of 3 decimal places.
 
-        :Arguments:
-           *filename*
-              output filename
+        Parameters
+        ----------
+        filename: str
+            output filename
+        convert_units: bool
+            units are converted to the MDAnalysis base format; ``None`` selects
+            the value of :data:`MDAnalysis.core.flags` ['convert_lengths']
         """
         self.filename = util.filename(filename, ext='gro')
 
@@ -253,13 +260,13 @@ class GROWriter(base.WriterBase):
     def write(self, selection, frame=None):
         """Write selection at current trajectory frame to file.
 
-        :Arguments:
-          selection
-              MDAnalysis AtomGroup (selection or Universe.atoms)
-              or also Universe
-        :Keywords:
-          frame
-              optionally move to frame number *frame*
+        Parameters
+        ----------
+        selection:
+            The :class:`~MDAnalysis.core.groups.AtomGroup` or :class:`Universe`
+            to write
+        frame: int
+            optionally move to frame number *frame*
 
         The GRO format only allows 5 digits for resid and atom
         number. If these number become larger than 99,999 then this

@@ -217,10 +217,6 @@ class PDBReader(base.ReaderBase):
     =============  ============  ===========  =============================================
 
 
-    .. SeeAlso:: :class:`PDBWriter`; :class:`PDBReader`
-                 implements a larger subset of the header records,
-                 which are accessible as :attr:`PDBReader.metadata`.
-
     .. versionchanged:: 0.11.0
        * Frames now 0-based instead of 1-based
        * New :attr:`title` (list with all TITLE lines).
@@ -315,11 +311,14 @@ class PDBReader(base.ReaderBase):
     def Writer(self, filename, **kwargs):
         """Returns a PDBWriter for *filename*.
 
-        :Arguments:
-          *filename*
-              filename of the output PDB file
+        Parameters
+        ----------
+        filename: str
+            filename of the output PDB file
 
-        :Returns: :class:`PDBWriter`
+        Returns
+        -------
+        :class:`PDBWriter`
 
         """
         kwargs.setdefault('multiframe', self.n_frames > 1)
@@ -412,10 +411,11 @@ class PDBWriter(base.WriterBase):
     .. _ENDMDL: http://www.wwpdb.org/documentation/format32/sect9.html#ENDMDL
     .. _CONECT: http://www.wwpdb.org/documentation/format32/sect10.html#CONECT
 
-    .. SeeAlso::
-       This class is identical to :class:`MultiPDBWriter` with the one
-       exception that it defaults to writing single-frame PDB files as if
-       *multiframe* = ``False`` was selected.
+    See Also
+    --------
+    This class is identical to :class:`MultiPDBWriter` with the one
+    exception that it defaults to writing single-frame PDB files as if
+    *multiframe* = ``False`` was selected.
 
     .. versionchanged:: 0.7.5
        Initial support for multi-frame PDB files.
@@ -492,23 +492,24 @@ class PDBWriter(base.WriterBase):
                  convert_units=None, multiframe=None):
         """Create a new PDBWriter
 
-        :Arguments:
-         *filename*
-           name of output file
-         *start*
-           starting timestep
-         *step*
-           skip between subsequent timesteps
-         *remarks*
-           comments to annotate pdb file (added to the TITLE record); note that
-           any remarks from the trajectory that serves as input are
-           written to REMARK records with lines longer than :attr:`remark_max_length` (66
-           characters) being wrapped.
-         *convert_units*
-           units are converted to the MDAnalysis base format; ``None`` selects
-           the value of :data:`MDAnalysis.core.flags` ['convert_lengths']
-         *bonds*
-           write bonds to the PDB file as CONECT_ records [``False``]
+        Parameters
+        ----------
+        filename: str
+            name of output file
+        start: int
+            starting timestep
+        step: int
+            skip between subsequent timesteps
+        remarks: str
+            comments to annotate pdb file (added to the TITLE record); note
+            that any remarks from the trajectory that serves as input are
+            written to REMARK records with lines longer than
+            :attr:`remark_max_length` (66 characters) being wrapped.
+        convert_units: bool
+            units are converted to the MDAnalysis base format; ``None`` selects
+            the value of :data:`MDAnalysis.core.flags` ['convert_lengths']
+        bonds: `None`, "connect", or "all"
+           write bonds to the PDB file as CONECT_ records
 
            .. Note::
 
@@ -519,10 +520,10 @@ class PDBWriter(base.WriterBase):
               the new PDB file and therefore a :exc:`NotImplementedError` is
               raised.)
 
-         *multiframe*
-           ``False``: write a single frame to the file; ``True``: create a
-           multi frame PDB file in which frames are written as MODEL_ ... ENDMDL_
-           records. If ``None``, then the class default is chosen.    [``None``]
+        multiframe: bool
+            ``False``: write a single frame to the file; ``True``: create a
+            multi frame PDB file in which frames are written as MODEL_ ... ENDMDL_
+            records. If ``None``, then the class default is chosen.    [``None``]
 
         .. _CONECT: http://www.wwpdb.org/documentation/format32/sect10.html#CONECT
         .. _MODEL: http://www.wwpdb.org/documentation/format32/sect9.html#MODEL
@@ -711,10 +712,11 @@ class PDBWriter(base.WriterBase):
         used as the PDB chainID (but see :meth:`~PDBWriter.ATOM` for
         details).
 
-        :Arguments:
-          *obj*
-            :class:`~MDAnalysis.core.groups.AtomGroup` or
-            :class:`~MDAnalysis.core.universe.Universe`
+        Parameters
+        ----------
+        obj
+            The :class:`~MDAnalysis.core.groups.AtomGroup` or
+            :class:`~MDAnalysis.core.universe.Universe` to write.
         """
 
         self._update_frame(obj)
@@ -1026,7 +1028,9 @@ class ExtendedPDBReader(PDBReader):
     insertion code in the PDB standard). PDB files in this format are written
     by popular programs such as VMD_.
 
-    .. SeeAlso:: :class:`PDBReader`
+    See Also
+    --------
+    :class:`PDBReader`
 
     .. _PDB standard: http://www.wwpdb.org/documentation/format32/sect9.html
     .. _VMD: http://www.ks.uiuc.edu/Research/vmd/
@@ -1054,10 +1058,11 @@ class MultiPDBWriter(PDBWriter):
     .. _CONECT: http://www.wwpdb.org/documentation/format32/sect10.html#CONECT
 
 
-    .. SeeAlso::
-       This class is identical to :class:`PDBWriter` with the one
-       exception that it defaults to writing multi-frame PDB files instead of
-       single frames.
+    See Also
+    --------
+    This class is identical to :class:`PDBWriter` with the one
+    exception that it defaults to writing multi-frame PDB files instead of
+    single frames.
 
     .. versionadded:: 0.7.6
 

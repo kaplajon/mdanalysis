@@ -67,11 +67,17 @@ def reader(filename, **kwargs):
     -------
     A Reader object
 
-    .. SeeAlso:: For trajectory formats: :class:`~DCD.DCDReader`,
-       :class:`~XTC.XTCReader`, :class:`~TRR.TRRReader`,
-       :class:`~XYZ.XYZReader`.  For single frame formats:
-       :class:`~CRD.CRDReader`, and
-       :class:`~PDB.PDBReader`, :class:`~GRO.GROReader`,
+    See Also
+    --------
+    For trajectory formats:
+    * :class:`~DCD.DCDReader`,
+    * :class:`~XTC.XTCReader`,
+    * :class:`~TRR.TRRReader`,
+    * :class:`~XYZ.XYZReader`.
+    For single frame formats:
+    * :class:`~CRD.CRDReader`,
+    * :class:`~PDB.PDBReader`,
+    * :class:`~GRO.GROReader`.
 
     .. deprecated:: 0.15.0
     The "permissive" flag is not used anymore (and effectively

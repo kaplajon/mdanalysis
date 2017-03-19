@@ -27,7 +27,9 @@ PQR topology parser
 Read atoms with charges from a PQR_ file (as written by PDB2PQR_). No
 connectivity is deduced.
 
-.. SeeAlso:: The file format is described in :mod:`MDAnalysis.coordinates.PQR`.
+See Also
+--------
+The file format is described in :mod:`MDAnalysis.coordinates.PQR`.
 
 .. _PQR:     http://www.poissonboltzmann.org/file-formats/biomolecular-structurw/pqr
 .. _APBS:    http://www.poissonboltzmann.org/apbs

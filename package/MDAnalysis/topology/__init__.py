@@ -156,7 +156,9 @@ the attributes they provide.
         parsing coordinates from a TPR file is currently not implemented
         in :mod:`~MDAnalysis.topology.TPRParser`.
 
-.. SeeAlso:: :ref:`Coordinates` with the :ref:`Supported coordinate formats`
+See Also
+--------
+:ref:`Coordinates` with the :ref:`Supported coordinate formats`
 
 .. _HOOMD XML: http://codeblue.umich.edu/hoomd-blue/doc/page_xml_file_format.html
 .. _Macromolecular Transmission Format (MMTF): https://mmtf.rcsb.org/
