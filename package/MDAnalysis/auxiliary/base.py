@@ -42,9 +42,11 @@ import six
 from six.moves import range
 
 import os
-import numpy as np
+import numbers
 import math
 import warnings
+
+import numpy as np
 
 from ..lib.util import asiterable
 
@@ -561,7 +563,7 @@ class AuxReader(six.with_metaclass(_AuxReaderMeta)):
              for auxstep in aux_reader[::10]       # analyse every 10th step        
                  run_analysis(auxstep)
         """
-        if isinstance(i, int):
+        if isinstance(i, numbers.Integral):
             i = self._check_index(i)
             return self._go_to_step(i)
 
@@ -578,7 +580,7 @@ class AuxReader(six.with_metaclass(_AuxReaderMeta)):
                     else self._check_index(i.stop) if i.stop is not None 
                     else self.n_steps)
             step = i.step or 1
-            if not isinstance(step, int) or step < 1:
+            if not isinstance(step, numbers.Integral) or step < 1:
                 raise ValueError("Step must be positive integer") # allow -ve?
             if start > stop:
                 raise IndexError("Stop frame is lower than start frame")
@@ -587,7 +589,7 @@ class AuxReader(six.with_metaclass(_AuxReaderMeta)):
             raise TypeError("Index must be integer, list of integers or slice")
 
     def _check_index(self, i):
-        if not isinstance(i, (int, np.integer)):
+        if not isinstance(i, numbers.Integral):
                 raise TypeError("Step indices must be integers")
         if i < 0:
             i = i + self.n_steps
