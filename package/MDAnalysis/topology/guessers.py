@@ -245,7 +245,7 @@ def guess_angles(bonds):
 
     Returns
     -------
-    list of tupples
+    list of tuples
         List of tuples defining the angles.
         Suitable for use in u._topology
 
