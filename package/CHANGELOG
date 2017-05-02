@@ -14,23 +14,34 @@ The rules for this file:
 
 ------------------------------------------------------------------------------
 
-mm/dd/17 utkbansal, kain88-de, xiki-tempula, kaplajon
-
+mm/dd/17 utkbansal, kain88-de, xiki-tempula, kaplajon, wouterboomsma,
+         richardjgowers, Shtkddud123
 
   * 0.16.1
 
 Enhancements
   * Universe now works with StringIO objects for topologies and trajectories.
-  * Residues with the same residue ids are not merged by default now 
+  * Residues with the same residue ids are not merged by default now
     (apply to PDB, GRO) (Issue #1306)
+  * Improved print to screen format in waterdynamics module (using
+    ProgressMeter).
+  * PQRParser now treats insertion codes properly (Issue #1317)
 
 Fixes
   * In Universe.transfer_to_memory(): dt is now adjusted with step (Issue #1310)
   * Various documentation sphinx errors (PR #1312)
+  * Bugfix in confdistmatrix.get_distance_matrix; now works on all trajectory types.
+    (issue #1324)
+  * Fixed bug "no molecules in water selection" in waterdynamics analysis
+    module.
+  * Fix hbond_analysis cannot deal with Universe where no two atoms are with 3A.
+    (PR #1325)
+  * Fix PDBParser docs for conect (issue #1246)
 
 Changes
   * Enable various pylint warnings to increase python 3 compatibility
   * Change Mathjax cdn (Issue #1313)
+
 
 04/10/17 kain88-de, fiona-naughton, richardjgowers, tyler.je.reddy, jdetle
          euhruska, orbeckst, rbrtdlg, jbarnoud, wouterboomsma, shanmbic,
